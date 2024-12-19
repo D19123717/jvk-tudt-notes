@@ -162,3 +162,134 @@ function init_articles() {
 }
 
 window.addEventListener("load", (e) => { run_with_data(INIT_DATA); });
+
+
+  
+	// Add keydown events for heading-toggle buttons
+	document.querySelectorAll('.heading-toggle').forEach(button => {
+	  button.addEventListener('keydown', (evt) => {
+		if (evt.key === 'Enter' || evt.key === ' ') {
+		  // Toggle open/close just like a click
+		  toggleSection(button);
+		  evt.preventDefault();
+		} else if (evt.key === 'Escape') {
+		  // Close the section and return focus to the button
+		  closeSection(button);
+		  button.focus();
+		}
+	  });
+	});
+
+	function toggleSection(button) {
+		const expanded = button.getAttribute('aria-expanded') === 'true';
+		const contentId = button.getAttribute('aria-controls');
+		const content = document.getElementById(contentId);
+	  
+		button.setAttribute('aria-expanded', String(!expanded));
+		content.setAttribute('aria-hidden', String(expanded));
+		content.style.display = expanded ? 'none' : 'block';
+	  }
+	  
+	  function closeSection(button) {
+		const contentId = button.getAttribute('aria-controls');
+		const content = document.getElementById(contentId);
+	  
+		button.setAttribute('aria-expanded', 'false');
+		content.setAttribute('aria-hidden', 'true');
+		content.style.display = 'none';
+	  }
+
+	  // Event click listerner for the mouse action
+	  document.querySelectorAll('.heading-toggle').forEach(button => {
+		button.addEventListener('keydown', (evt) => {
+		  if (evt.key === 'Enter' || evt.key === ' ') {
+			toggleSection(button);
+			evt.preventDefault();
+		  } else if (evt.key === 'Escape') {
+			closeSection(button);
+			button.focus();
+		  }
+		});
+	  });
+
+	// Event listerners for mouse users to toggle the section
+	  document.querySelectorAll('.heading-toggle').forEach(button => {
+		button.addEventListener('click', () => {
+		  toggleSection(button);
+		});
+	  
+		button.addEventListener('keydown', (evt) => {
+		  if (evt.key === 'Enter' || evt.key === ' ') {
+			toggleSection(button);
+			evt.preventDefault();
+		  } else if (evt.key === 'Escape') {
+			closeSection(button);
+			button.focus();
+		  }
+		});
+	  });
+
+	  //task 3 additional code
+
+//  debugging to see what's happening
+function openSectionAndScrollTo(targetId) {
+    console.log('Opening section:', targetId);
+    
+    // First try to open the exact target section
+    const directButton = document.querySelector(`button[aria-controls="${targetId}-content"]`);
+    if (directButton) {
+        console.log('Found direct button for section');
+        const expanded = directButton.getAttribute('aria-expanded') === 'true';
+        if (!expanded) {
+            toggleSection(directButton);
+        }
+    }
+
+    // Then find the target element itself
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) {
+        console.log('Target element not found:', targetId);
+        return;
+    }
+
+    // Find and open any parent sections
+    let currentElement = targetElement;
+    while (currentElement) {
+        const parentArticle = currentElement.closest('article');
+        if (!parentArticle) break;
+        
+        const articleButton = document.querySelector(`button[aria-controls="${parentArticle.id}"]`);
+        if (articleButton) {
+            console.log('Opening parent article:', parentArticle.id);
+            const expanded = articleButton.getAttribute('aria-expanded') === 'true';
+            if (!expanded) {
+                toggleSection(articleButton);
+            }
+        }
+        
+        currentElement = parentArticle.parentElement;
+    }
+
+    // this function Waits for sections to finish opening before scrolling
+    setTimeout(() => {
+        console.log('Scrolling to:', targetId);
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+}
+
+// Update click handler to be more specific
+document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+    
+    const targetId = link.hash.substring(1);
+    console.log('Link clicked to:', targetId);
+    event.preventDefault();
+    openSectionAndScrollTo(targetId);
+});
+  
+	  
+	  
+	  
+  
+  

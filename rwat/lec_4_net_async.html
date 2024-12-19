@@ -9,6 +9,7 @@
     </head>
     <body>
 	<header id="tudheader">
+		<div class="header-container">
 	    <img id="leftlogo" src="../common/res/images/tudublin_logo.png" alt="TU Dublin Logo">
 	    <div id="tuddepttext">
 		<p>School of Computer Science</p>
@@ -17,6 +18,7 @@
 		<p id="title">Network and Asynchronous Programming</p>
 	    </div>
 	    <img id="rightlogo" src="res/images/logo.png" alt="CSWD Logo">
+	</div>
 	</header>
 	<div id="content">
 	    <nav>
@@ -38,8 +40,10 @@
 
 	            <!--------------------------------------------------------------------->
                     <li id="ARTCLID000081">
-			<p>Synchronous programming</p>
-			<article style="display:none">
+						<button class="heading-toggle" aria-expanded="false" aria-controls="ARTCLID000081-content">
+							Synchronous programming
+						</button>
+			<article id="ARTCLID000081-content" style="display:none" aria-hidden="true">
                             <h2>Synchronous programming</h2>
 
 			    <figure class="five">
@@ -59,8 +63,10 @@
 
 	            <!--------------------------------------------------------------------->
                     <li id="ARTCLID000082">
-			<p>Asynchronous programming with callbacks</p>
-			<article style="display:none">
+						<button class="heading-toggle" aria-expanded="false" aria-controls="ARTCLID000082-content">
+							programming with callbacks
+						</button>
+			<article id="ARTCLID000082-content" style="display:none" aria-hidden="true">
                             <h2>Asynchronous programming with callbacks</h2>
 			    <figure class="five">
 				<figcaption id="fig-callback">Execution of a program with an asynchronous call and the use of a callback</figcaption>
@@ -80,8 +86,10 @@
 
 				<!--------------------------------------------------------------------->
 				<li id="ARTCLID000083">
-				    <p>Asynchronous programming with promises</p>
-				    <article style="display:none">
+					<button class="heading-toggle" aria-expanded="false" aria-controls="ARTCLID000083-content">
+						Asynchronous programming with promises
+					</button>
+				    <article id="ARTCLID000083-content" style="display:none" aria-hidden="true">
 					<h2>Asynchronous programming with promises</h2>
 					<figure class="five">
 					    <figcaption>Execution of a program with an asynchronous call and the use of a promise</figcaption>
@@ -103,8 +111,11 @@
 
 	            <!--------------------------------------------------------------------->
                     <li id="ARTCLID000084">
-			<p>Multithreading</p>
-			<article style="display:none">
+						<button class="heading-toggle" aria-expanded="false" aria-controls="ARTCLID000084-content">
+							Multithreading
+						</button>
+			
+			<article  id="ARTCLID000084-content" style="display:none" aria-hidden="true">
                             <h2>Multithreading</h2>
 			    <ul>
 				<li>Multithreading is implemented by the Javascript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Workers API</a>.</li>

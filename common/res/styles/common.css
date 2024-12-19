@@ -28,11 +28,12 @@ article>.links a { background: dimgray; color: white; margin: 0 0.3em 0 0; paddi
 
 #sig { font-size: small; transform: rotate(270deg); position: fixed; bottom: 1.8em; right: -2.2em;}
 
-header#tudheader { width: 100%; display: flex; max-height: 5em; }
-header#tudheader > * {  height: 100%; margin: 0; padding: 0; font-weight: bold; }
-header#tudheader > #tuddepttext > p { width: 10em; padding: 0; margin: 1em;}
-header#tudheader #titlecontainer { flex-grow: 1; }
-header#tudheader #title { font-size: 2em; padding-top: 0.5em; margin: auto 1em auto 1em; text-align: center; }
+header#tudheader { width: 100%; background: white;  padding: 0.5em 0; }
+header#tudheader .header-container { display: flex; flex-wrap: wrap;align-items: center; justify-content: space-between; max-width: 1500px; margin: 0 auto;padding: 0 1em; box-sizing: border-box; }
+header#tudheader .header-container > * {  height: 100%; margin: 0; padding: 0; font-weight: bold; }
+header#tudheader > #tuddepttext > p {  margin: 0.5em;}
+header#tudheader #titlecontainer { flex: 1 1 auto; text-align: center; margin: 0.5em 0; }
+header#tudheader #title { font-size: 2em;  margin: 0 auto; }
 
 
 table#module-info th { width: 7em; text-align: left; padding: 0.2em 0; }
@@ -266,6 +267,36 @@ and responsive elements */
 .sc-25-m1 { width: calc(25% - 1em); }
 .sc-50-m1 { width: calc(50% - 1em); }
 .sc-75-m1 { width: calc(75% - 1em); }
+
+
+.heading-toggle {
+    display: block;
+    background: #cc6666;
+    color: black;
+    border: 0.5px solid black;
+    padding: 0.5em;
+    font-weight: bold;
+    cursor: pointer;
+    width: 30em; /* Set a fixed width that fits the longest title */
+    margin-bottom: 0.5em; 
+    text-align: left; 
+  }
+  
+  
+  .heading-toggle:focus {
+    outline: 3px solid #007ACC; /* maintain visible focus */
+    outline-offset: 2px;
+  }
+  
+
+@media (min-width: 900px) {
+    #title {
+      font-size: 2.5em;
+    }
+    #leftlogo, #rightlogo {
+      max-height: 3em;
+    }
+  }
 
 @media only screen and (max-width: 90em) {
     .sc-t { font-size: min(1.3vw, small); }
